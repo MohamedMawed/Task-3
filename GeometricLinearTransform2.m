@@ -1,4 +1,4 @@
-function GeomImg  = GeometricLinearTransform2(I,W,newsize)
+function ImgAfter  = GeometricLinearTransform2(I,W,newsize)
 [oldH oldW ~]=size(I);
 [m ~]=size(W);
 if m==2
@@ -20,7 +20,7 @@ W(1,3) = -Mindes(1);%min X
 W(2,3) = -Mindes(2);%min Y
 end
 W =(W^-1);
-GeomImg  = uint8(zeros(newH, newW, 3));
+ImgAfter  = uint8(zeros(newH, newW, 3));
 
 
 for i = 1 : newH
@@ -28,7 +28,7 @@ for i = 1 : newH
        source  =  W * [ j ; i ; 1];
        x =round(source );
        if ( x (1)>= 1 && x (1)<= oldW && x (2) >= 1 && x (2) <= oldH )
-           GeomImg (i ,j ,:) = I(x (2),x (1),:);
+           ImgAfter (i ,j ,:) = I(x (2),x (1),:);
        end
     end
 end
